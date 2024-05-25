@@ -30,7 +30,7 @@ def helloworld():
             username = request.args.get("Username")
             api = request.args.get("API")
             secret = request.args.get("secret")
-            ids,name,inctags = searchformanga(username,password,api,secret)
+            ids,name = searchformanga(username,password,api,secret)
             a = ids[0]
             b = ids[1]
             c = ids[2]

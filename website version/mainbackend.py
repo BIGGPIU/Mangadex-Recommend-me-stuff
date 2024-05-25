@@ -232,7 +232,7 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
             pass   
             
         i +=1
-    return idforlinks, nameforlinks,included_tag_names,coverpath
+    return idforlinks, nameforlinks
 
 
 
