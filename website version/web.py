@@ -24,7 +24,8 @@ def helloworld():
         elif(request.args.get("Username") == ""):
             return "<html><body> <h1> put in a Username loser</h1></body></html>"
         elif(request.args.get("Password") == ""):
-            return "<html><body> <h1> put in a password loser </h1></body></html>"
+            return render_template("reccstemp.html",name0="One piece",name1="One piece",name2="One piece",name3="One piece",name4="One piece",name5="One piece",name6="One piece",name7="One piece",name8="One piece",name9="One piece"
+                                   ,id0="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id1="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id2="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id3="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id4="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id5="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id6="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id7="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id8="a2c1d849-af05-4bbc-b2a7-866ebb10331f",id9="a2c1d849-af05-4bbc-b2a7-866ebb10331f")
         else:
             password = request.args.get("Password")
             username = request.args.get("Username")
