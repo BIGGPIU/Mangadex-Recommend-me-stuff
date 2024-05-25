@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/firstUI.css') }}">
+    </head>
+        <div class="row">
+            <div class="col-75">
+                <div class="container">
+                    <form method="GET" action="#">
+                        <div class="row">
+                            <div class="col-50">
+                                <h3>Mangadex User info</h3>
+                                <label for="Username"> <i class="fa fa-user"></i>Username</label>
+                                <input type="text" name="Username" id="Username"></input>
+                                <label for="Password"> <i class="fa fa-envelope"></i>Password</label>
+                                <input type="text" name="Password" id="Password"></input>
+                                </div>
+                                <div class="col-50">
+                                    <h3>Mangadex API info</h3>
+                                    <label for="API">API Key</label>
+                                    <input type="text" name="API" id="API"></input>
+                                    <label for="secret">API secret</label>
+                                    <input type="text" name="secret" id="secret"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" name="confirm" id="confirm" class="btn">
+                    </form>
+                </div>
+            </div>
+            <div class="col-25">
+                <div class="MOTD">
+                    <h4>MOTD</h4>
+                    <p>5/24/24</p>
+                    <p>wow new fortnite season today. I'm not gonna play it rn cause the queue is a bitch</p> 
+                </div>
+            </div>
+        </div>
+</html>

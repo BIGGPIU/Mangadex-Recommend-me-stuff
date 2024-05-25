@@ -1,0 +1,46 @@
+@font-face {
+    font-family:mangadex;
+    src: url('leaguespartan-variablefont_wght-webfont.woff2') format('woff2'),
+         url('leaguespartan-variablefont_wght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  
+  }
+
+
+
+
+.head{
+    background-image:url(testimage.png);
+    height: 300px;
+    background-position: 40%;
+    background-repeat: no-repeat;
+    background-size:cover;
+    position: relative;
+ }
+
+ .r1{
+    font-size: medium;
+    color:aliceblue;
+ }
+
+ .r1link{
+    text-align: center;
+    position:absolute;
+    top:90%;
+    left:0%;
+
+
+}
+
+.subrecs{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+html {
+    background-color: #1a1a1a;
+    font-family:mangadex,arial,sans-serif;
+    height:100%;
+    margin:0;
+}
+
