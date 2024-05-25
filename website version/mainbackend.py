@@ -2,6 +2,8 @@ import requests
 from time import sleep
 from collections import Counter
 import random
+import wget
+import os
 #NOTE the manga link is formatted like this: 
 #mangadex.org/title/ID
 #when I think about it why is #NOTE blue 
@@ -35,7 +37,7 @@ def maincall(USERNAME,PASSWORD,API,SECRET):
         #print (f"\n HTTP Response: {request1.status_code}\n")
         pass
     
-#heyy me in the future make sure you make it toggleable to get reccs based on what you dont have in your completed folder
+ #heyy me in the future make sure you make it toggleable to get reccs based on what you dont have in your completed folder
     request1 = requests.get( 
         "https://api.mangadex.org/manga/status", headers= {
             "accept":'application/json',
@@ -175,18 +177,44 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
     idforlinks = ([manga["id"] for manga in r.json()["data"]]) #this is a list
     nameforlinks = [] #this will be in the same order as idforlinks
 
+    try:
+        prune("website version\static\styles",".png")
+    except:
+        pass
+    try:
+        prune("website version\static\styles",".jpg")
+    except:
+        pass
+
     i=0
     while i != len(idforlinks):
         hold = idforlinks[i]
-        request2 = requests.get(
-                f"https://api.mangadex.org/manga/{hold}?includes%5B%5D=", headers= {
-                    "accept":"application/json"
-                }
-            )
+        if i == 0:
+            request2 = requests.get(
+                    f"https://api.mangadex.org/manga/{hold}?includes%5B%5D=cover_art", headers= {
+                        "accept":"application/json"
+                    }
+                )
+            holdddd = (request2.json())
+            z = 0
+            while True:
+                try:
+                    cover = (holdddd["data"]["relationships"][z]["attributes"]["fileName"])
+                    coverpath = downloadcover(idforlinks[0],cover)
+                    break
+                except:
+                    z +=1
+        else:
+            request2 = requests.get(
+                    f"https://api.mangadex.org/manga/{hold}?includes%5B%5D=", headers= {
+                        "accept":"application/json"
+                    }
+                )
         supertemp = (request2.json())
         x = 0
         y = 1
         reasonablelangs = ["en","jp","ko"] #this also functions as a priority list for names. prioritizing english names over jp names and jp names over ko names
+
         while y != 0:
             try:
                 hold2 = str(supertemp["data"]["attributes"]["title"][f"{reasonablelangs[x]}"])
@@ -197,13 +225,40 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
                 if x == 3:
                     hold2 = "NAME ERROR"
 
-        nameforlinks.append(hold2)      
+        nameforlinks.append(hold2)   
+
+
+        if i == 0:
+            pass   
             
         i +=1
-    return idforlinks, nameforlinks,included_tag_names
+    return idforlinks, nameforlinks,included_tag_names,coverpath
 
-        
 
+
+def downloadcover(ID,link) -> str:
+    url = f"https://mangadex.org/covers/{ID}/{link}"
+    print (url)
+    if ".png" in url:
+        end = ".png"
+    else:
+        end = ".jpg"
+    response = wget.download(url,out=f"website version\static\styles\\cover{end}")
+
+    path = f"{ID}{end}"
+    return path
+
+def prune(PATH,extension):
+    hold = os.listdir(PATH)
+    i=0
+    while i != len(hold):
+        if extension in hold[i]:
+            os.remove(f"{PATH}/{hold[i]}")
+            i+=1
+        else:
+            i+=1
+
+    pass
 
 def strip(string):
     string = string.replace("{","")
@@ -213,4 +268,3 @@ def strip(string):
 
 if __name__ == "__main__":
     searchformanga()
-    
