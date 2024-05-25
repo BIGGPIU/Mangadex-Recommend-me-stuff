@@ -8,7 +8,7 @@ Open settings.txt and input your relevant information
 
 You can get your API key and secret By going to settings>API clients on the mangadex website
 
-first run ``` pip install windows-curses``` and ```pip install requests``` in your terminal
+first run ```pip install windows-curses``` and ```pip install requests``` in your terminal
 
 then run ```cd "(your directory)"```
 
