@@ -31,10 +31,10 @@ def maincall(USERNAME,PASSWORD,API,SECRET):
     access_token = r1_json["access_token"]
     refresh_token = r1_json["refresh_token"]
 
-    print(f"\n{access_token}\n")
+    #print(f"\n{access_token}\n")
 
     if (request1.status_code) == 200:
-        #print (f"\n HTTP Response: {request1.status_code}\n")
+        ##print (f"\n HTTP Response: {request1.status_code}\n")
         pass
     
  #heyy me in the future make sure you make it toggleable to get reccs based on what you dont have in your completed folder
@@ -55,24 +55,24 @@ def maincall(USERNAME,PASSWORD,API,SECRET):
     readingstatus = readingstatus.replace(":","")
     readingstatus = readingstatus.replace(" ","")
     if "result ok" in readingstatus:
-        #print ("\nALL GOOD!\n")
+        ##print ("\nALL GOOD!\n")
         pass
     readingstatus = readingstatus.split(",")
     readingstatus.pop(1)
     readingstatus.pop(0)
     i = 0
     while i != len(readingstatus):
-        #print(readingstatus[i])
+        ##print(readingstatus[i])
         
         i += 1
     if i == len(readingstatus):
-        #print (f"\nTotal: {i}\n")
+        ##print (f"\nTotal: {i}\n")
         pass
 
     i = 0
     
     while i != len(readingstatus):
-        print (f"Fetching item {i+1}/{len(readingstatus)}")
+        #print (f"Fetching item {i+1}/{len(readingstatus)}")
         #sleep(1)
         hold = str(readingstatus[i])
 
@@ -124,7 +124,7 @@ def maincall(USERNAME,PASSWORD,API,SECRET):
 
         permmanga.append(temp2)
         permgenre.append(genres)
-        #print (temp2)
+        ##print (temp2)
         i+=1
     
     return permgenre, permmanga
@@ -152,7 +152,7 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
     order = {
     "rating": "desc"}
     included_tag_names = getmostpopular(USERNAME,PASSWORD,API,SECRET) #I'm just straight stealing this from the mangadex documentation I see no reason to do otherwise
-    print (included_tag_names)
+    #print (included_tag_names)
     base_url = "https://api.mangadex.org"
     tags = requests.get(
     f"{base_url}/manga/tag"
@@ -165,7 +165,7 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
         if tag["attributes"]["name"]["en"]
         in included_tag_names
     ]
-    #print (included_tag_ids)
+    ##print (included_tag_ids)
     r = requests.get(
     f"{base_url}/manga",
     params={
@@ -173,7 +173,7 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
         },
     )
 
-    print([manga["id"] for manga in r.json()["data"]])
+    #print([manga["id"] for manga in r.json()["data"]])
     idforlinks = ([manga["id"] for manga in r.json()["data"]]) #this is a list
     nameforlinks = [] #this will be in the same order as idforlinks
 
@@ -219,7 +219,7 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
             try:
                 hold2 = str(supertemp["data"]["attributes"]["title"][f"{reasonablelangs[x]}"])
                 y = 0         
-                print (hold2)
+                #print (hold2)
             except:
                 x+=1
                 if x == 3:
@@ -238,7 +238,7 @@ def searchformanga(USERNAME,PASSWORD,API,SECRET):
 
 def downloadcover(ID,link) -> str:
     url = f"https://mangadex.org/covers/{ID}/{link}"
-    print (url)
+    #print (url)
     if ".png" in url:
         end = ".png"
     else:
